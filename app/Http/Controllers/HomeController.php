@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BasisPengetahuan;
+use App\Models\Gejala;
+use App\Models\Penyakit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        $page = "Dasboard Admin";
+        $dt1 = Gejala::get()->count();
+        $dt2 = Penyakit::get()->count();
+        $dt3 = BasisPengetahuan::get()->count();
+        return view('admin.dashboard', compact('user', 'page', 'dt1', 'dt2', 'dt3'));
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
