@@ -56,6 +56,15 @@ class AdminController extends Controller
         return redirect()->route('gejala.index');
     }
 
+    public function destroygejala($id)
+    {
+        $gejala = Gejala::findOrFail($id);
+        $gejala->delete();
+
+        Alert::success('Informasi Pesan!', 'Gejala Talah Berhasil dihapus');
+        return redirect()->route('gejala.index');
+    }
+
     //penyakit
     public function penyakit()
     {
@@ -103,6 +112,15 @@ class AdminController extends Controller
         return redirect()->route('penyakit.index');
     }
 
+    public function destroypenyakit($id)
+    {
+        $penyakit = Penyakit::findOfFail($id);
+        $penyakit->delete();
+
+        Alert::success('Informasi Pesan!', 'Penyakit Telah Berhasil dihapus');
+        return redirect()->route('penyakit.index');
+    }
+
     //basispengetahuan
     public function basispengetahuan()
     {
@@ -145,6 +163,15 @@ class AdminController extends Controller
         $dtUpload->save();
 
         Alert::success('Informasi Pesan!', 'Basis Pengetahuan Telah Berhasil diedit');
+        return redirect()->route('basis.index');
+    }
+
+    public function destroybasis($id)
+    {
+        $basis = BasisPengetahuan::findOrFail($id);
+        $basis->delete();
+
+        Alert::success('Informasi Pesan!', 'Basis Pengetahuan Telah Berhasil dihapus');
         return redirect()->route('basis.index');
     }
 }
