@@ -42,14 +42,14 @@ class AdminController extends Controller
     public function editgejala($id)
     {
         $page = "Edit Gejala";
-        $gelaja = Gejala::findOfFail($id);
+        $gejala = Gejala::findOrFail($id);
         return view('admin.gejala.edit', compact('page', 'gejala'));
     }
 
     public function updategejala(Request $request, $id)
     {
         $dtUpload = Gejala::findOrFail($id);
-        $dtUpload->name = $request->name;
+        $dtUpload->nama_gejala = $request->nama_gejala;
         $dtUpload->save();
 
         Alert::success('Informasi Pesan!', 'Gejala Talah Berhasil diedit');

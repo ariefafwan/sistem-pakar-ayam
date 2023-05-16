@@ -37,7 +37,7 @@
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
                                         <form id="gejala-delete-form-{{$row->id}}"
-                                            action="{{ route('download.destroy',$row->id) }}" method="POST"
+                                            action="{{ route('gejala.destroy',$row->id) }}" method="POST"
                                             style="display: none;">
                                             @csrf
                                         </form>

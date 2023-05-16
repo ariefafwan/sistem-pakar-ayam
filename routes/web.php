@@ -30,7 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/editgejala/{id}', [AdminController::class, 'editgejala'])->name('gejala.edit');
     Route::post('/editgejala/{id}/update', [AdminController::class, 'updategejala'])->name('gejala.update');
     Route::post('/destroygejala/{id}/destroy', [AdminController::class, 'destroygejala'])->name('gejala.destroy');
-
     //penyakit
     Route::get('/penyakit', [AdminController::class, 'penyakit'])->name('penyakit.index');
     Route::get('/createpenyakit', [AdminController::class, 'createpenyakit'])->name('penyakit.create');
