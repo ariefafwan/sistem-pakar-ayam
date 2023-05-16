@@ -19,7 +19,6 @@ class AdminController extends Controller
         $page = "Daftar Gejala";
         $gejala = Gejala::all();
         return view('admin.gejala.index', compact('user', 'page', 'gejala'));
-
     }
 
     public function creategejala()
@@ -32,11 +31,19 @@ class AdminController extends Controller
     public function storegejala(Request $request)
     {
         $dtUpload = new Gejala();
-        $dtUpload->name = $request->name;
+        $dtUpload->nama_gejala = $request->nama_gejala;
         $dtUpload->save();
 
         Alert::success('Informasi Pesan!', 'Gejala Baru Berhasil ditambahkan');
         return redirect()->route('gejala.index');
+    }
+
+    public function editgejala(Gejala $gejala)
+    {
+        $user = Auth::user()->id;
+        $page = "Tambah Gejala";
+        $gejala = $gejala;
+        return view('admin.gejala.create', compact('user', 'page', 'gejala'));
     }
 
     //penyakit
@@ -54,7 +61,7 @@ class AdminController extends Controller
         $page = "Tambah Penyakit";
         return view('admin.penyakit.create', compact('user', 'page'));
     }
-    
+
     public function storepenyakit(Request $request)
     {
         $dtUpload = new Penyakit();

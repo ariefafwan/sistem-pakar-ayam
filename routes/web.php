@@ -25,8 +25,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware('auth')->group(function () {
     //gejala
     Route::get('/gejala', [AdminController::class, 'gejala'])->name('gejala.index');
-    Route::get('/creategejela', [AdminController::class, 'creategejela'])->name('gejala.create');
+    Route::get('/creategejela', [AdminController::class, 'creategejala'])->name('gejala.create');
     Route::post('/creategejela', [AdminController::class, 'storegejala'])->name('gejala.store');
+    Route::get('/editgejela', [AdminController::class, 'editgejala'])->name('gejala.edit');
     //penyakit
     Route::get('/penyakit', [AdminController::class, 'penyakit'])->name('penyakit.index');
     Route::get('/createpenyakit', [AdminController::class, 'createpenyakit'])->name('penyakit.create');
@@ -36,4 +37,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/createbasispengetahuan', [AdminController::class, 'createbasis'])->name('basis.create');
     Route::post('/createbasispengetahuan', [AdminController::class, 'storebasis'])->name('basis.store');
 });
-Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
+Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout']);
