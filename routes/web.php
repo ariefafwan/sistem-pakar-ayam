@@ -27,13 +27,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/gejala', [AdminController::class, 'gejala'])->name('gejala.index');
     Route::get('/creategejela', [AdminController::class, 'creategejela'])->name('gejala.create');
     Route::post('/creategejela', [AdminController::class, 'storegejala'])->name('gejala.store');
+    Route::get('/editgejala/{id}', [AdminController::class, 'editgejala'])->name('gejala.edit');
+    Route::post('/editgejala/{id}/update', [AdminController::class, 'updategejala'])->name('gejala.update');
     //penyakit
     Route::get('/penyakit', [AdminController::class, 'penyakit'])->name('penyakit.index');
     Route::get('/createpenyakit', [AdminController::class, 'createpenyakit'])->name('penyakit.create');
     Route::post('/createpenyakit', [AdminController::class, 'storepenyakit'])->name('penyakit.store');
+    Route::get('/editpenyakit/{id}', [AdminController::class, 'editpenyakit'])->name('penyakit.edit');
+    Route::post('/editpenyakit/{id}/update', [AdminController::class, 'updatepenyakit'])->name('penyakit.update');
     //basis pengetahuan
     Route::get('/basispengetahuan', [AdminController::class, 'basispengetahuan'])->name('basis.index');
     Route::get('/createbasispengetahuan', [AdminController::class, 'createbasis'])->name('basis.create');
     Route::post('/createbasispengetahuan', [AdminController::class, 'storebasis'])->name('basis.store');
+    Route::get('/editbasispengetahuan/{id}',[AdminController::class, 'editbasis'])->name('basis.edit');
+    Route::Post('/editbasispengetahuan/{id}/update', [AdminController::class, 'updatebasis'])->name('basis.update');
 });
 Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
