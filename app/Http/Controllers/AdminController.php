@@ -39,6 +39,23 @@ class AdminController extends Controller
         return redirect()->route('gejala.index');
     }
 
+    public function editgejala($id)
+    {
+        $page = "Edit Gejala";
+        $gelaja = Gejala::findOfFail($id);
+        return view('admin.gejala.edit', compact('page', 'gejala'));
+    }
+
+    public function updategejala(Request $request, $id)
+    {
+        $dtUpload = Gejala::findOrFail($id);
+        $dtUpload->name = $request->name;
+        $dtUpload->save();
+
+        Alert::success('Informasi Pesan!', 'Gejala Talah Berhasil diedit');
+        return redirect()->route('gejala.index');
+    }
+
     //penyakit
     public function penyakit()
     {
@@ -67,6 +84,25 @@ class AdminController extends Controller
         return redirect()->route('penyakit.index');
     }
 
+    public function editpenyakit($id)
+    {
+        $page = "Edit Penyakit";
+        $penyakit = Penyakit::findOrFail($id);
+        return view('admin.penyakit.edit', compact('page', 'penyakit'));
+    }
+
+    public function updatepenyakit(Request $request, $id)
+    {
+        $dtUpload = Penyakit::findOrFail($id);
+        $dtUpload->det_penyakit = $request->det_penyakit;
+        $dtUpload->solusi_penyakit = $request->solusi_penyakit;
+        $dtUpload->gambar = $request->gambar;
+        $dtUpload->save();
+
+        Alert::success('Informasi Pesan!', 'Penyakit Telah Berhasil diedit');
+        return redirect()->route('penyakit.index');
+    }
+
     //basispengetahuan
     public function basispengetahuan()
     {
@@ -91,6 +127,24 @@ class AdminController extends Controller
         $dtUpload->save();
 
         Alert::success('Informasi Pesan!', 'Basis Pengetahuan Baru Berhasil ditambahkan');
+        return redirect()->route('basis.index');
+    }
+
+    public function editbasis($id)
+    {
+        $page = "Edit Basis Pengetahuan";
+        $basis = BasisPengetahuan::findOrFail($id);
+        return view('admin.basispengetahuan.edit', compact('page', 'basis'));
+    }
+
+    public function updatebasis(Request $request, $id)
+    {
+        $dtUpload = BasisPengetahuan::findOrFail($id);
+        $dtUpload->penyakit_id = $request->penyakit_id;
+        $dtUpload->gejala_id = $request->gejala_id;
+        $dtUpload->save();
+
+        Alert::success('Informasi Pesan!', 'Basis Pengetahuan Telah Berhasil diedit');
         return redirect()->route('basis.index');
     }
 }
