@@ -25,7 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware('auth')->group(function () {
     //gejala
     Route::get('/gejala', [AdminController::class, 'gejala'])->name('gejala.index');
-    Route::get('/creategejela', [AdminController::class, 'creategejela'])->name('gejala.create');
+    Route::get('/creategejela', [AdminController::class, 'creategejala'])->name('gejala.create');
     Route::post('/creategejela', [AdminController::class, 'storegejala'])->name('gejala.store');
     Route::get('/editgejala/{id}', [AdminController::class, 'editgejala'])->name('gejala.edit');
     Route::post('/editgejala/{id}/update', [AdminController::class, 'updategejala'])->name('gejala.update');
@@ -41,8 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/basispengetahuan', [AdminController::class, 'basispengetahuan'])->name('basis.index');
     Route::get('/createbasispengetahuan', [AdminController::class, 'createbasis'])->name('basis.create');
     Route::post('/createbasispengetahuan', [AdminController::class, 'storebasis'])->name('basis.store');
-    Route::get('/editbasispengetahuan/{id}',[AdminController::class, 'editbasis'])->name('basis.edit');
+    Route::get('/editbasispengetahuan/{id}', [AdminController::class, 'editbasis'])->name('basis.edit');
     Route::post('/editbasispengetahuan/{id}/update', [AdminController::class, 'updatebasis'])->name('basis.update');
     Route::post('/destroybasispengetahuan/{id}/destroy', [AdminController::class, 'destroybasis'])->name('basis.destroy');
 });
-Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
+Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout']);

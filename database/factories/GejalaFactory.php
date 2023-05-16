@@ -17,7 +17,7 @@ class GejalaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nama_gejala' => fake()->words(3, true)
         ];
     }
 }
