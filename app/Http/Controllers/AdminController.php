@@ -8,6 +8,7 @@ use App\Models\Penyakit;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Laravel\Ui\Presets\React;
 
 class AdminController extends Controller
@@ -17,7 +18,7 @@ class AdminController extends Controller
     {
         $user = Auth::user()->id;
         $page = "Daftar Gejala";
-        $gejala = Gejala::all();
+        $gejala = Gejala::latest()->paginate(5);
         return view('admin.gejala.index', compact('user', 'page', 'gejala'));
     }
 
@@ -70,7 +71,7 @@ class AdminController extends Controller
     {
         $user = Auth::user()->id;
         $page = "Daftar Penyakit";
-        $penyakit = Penyakit::all();
+        $penyakit = Penyakit::latest()->paginate(5);
         return view('admin.penyakit.index', compact('user', 'page', 'penyakit'));
     }
 
@@ -84,6 +85,7 @@ class AdminController extends Controller
     public function storepenyakit(Request $request)
     {
         $dtUpload = new Penyakit();
+        $dtUpload->nama_penyakit = $request->nama_penyakit;
         $dtUpload->det_penyakit = $request->det_penyakit;
         $dtUpload->solusi_penyakit = $request->solusi_penyakit;
         $dtUpload->gambar = $request->gambar;
@@ -102,10 +104,18 @@ class AdminController extends Controller
 
     public function updatepenyakit(Request $request, $id)
     {
+        $nm = $request->gambar;
+        $namafile = $nm->getCLientOriginalName();
+        
         $dtUpload = Penyakit::findOrFail($id);
+        $gambar = public_path('/storage/img/penyakit' . $dtUpload->gambar);
+        File::delete($gambar);
+        $dtUpload->nama_penyakit = $request->nama_penyakit;
         $dtUpload->det_penyakit = $request->det_penyakit;
         $dtUpload->solusi_penyakit = $request->solusi_penyakit;
-        $dtUpload->gambar = $request->gambar;
+        $dtUpload->gambar = $request->$namafile;
+
+        $nm->move(public_path() . '/storage/img/penyakit', $namafile);
         $dtUpload->save();
 
         Alert::success('Informasi Pesan!', 'Penyakit Telah Berhasil diedit');
@@ -115,6 +125,8 @@ class AdminController extends Controller
     public function destroypenyakit($id)
     {
         $penyakit = Penyakit::findOfFail($id);
+        $img = public_path('/storage/img/penyakit' . $penyakit->gambar);
+        File::delete($img);
         $penyakit->delete();
 
         Alert::success('Informasi Pesan!', 'Penyakit Telah Berhasil dihapus');
@@ -126,7 +138,7 @@ class AdminController extends Controller
     {
         $user = Auth::user()->id;
         $page = "Daftar Basis Pengetahuan";
-        $basis = BasisPengetahuan::all();
+        $basis = BasisPengetahuan::orderBy('penyakit_id', 'asc')->paginate(10);
         return view('admin.basispengetahuan.index', compact('user', 'page', 'basis'));
     }
 
@@ -134,7 +146,9 @@ class AdminController extends Controller
     {
         $user = Auth::user()->id;
         $page = "Tambah Basis Pengetahuan";
-        return view('admin.basispengetahuan.create', compact('user', 'page'));
+        $penyakit = Penyakit::all();
+        $gejala = Gejala::all();
+        return view('admin.basispengetahuan.create', compact('user', 'page', 'penyakit', 'gejala'));
     }
 
     public function storebasis(Request $request)
@@ -152,7 +166,9 @@ class AdminController extends Controller
     {
         $page = "Edit Basis Pengetahuan";
         $basis = BasisPengetahuan::findOrFail($id);
-        return view('admin.basispengetahuan.edit', compact('page', 'basis'));
+        $penyakit = Penyakit::all();
+        $gejala = Gejala::all();
+        return view('admin.basispengetahuan.edit', compact('page', 'basis', 'penyakit', 'gejala'));
     }
 
     public function updatebasis(Request $request, $id)
