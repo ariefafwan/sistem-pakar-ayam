@@ -94,8 +94,6 @@ class AdminController extends Controller
                 $filename = $file->getClientOriginalName();
                 $file->storeAs('public/penyakit/', $filename);
                 $dtUpload->gambar = $filename;
-            } else {
-                return back();
             }
         $dtUpload->save();
 
@@ -127,8 +125,6 @@ class AdminController extends Controller
             $filename = $file->getClientOriginalName();
             $file->storeAs('public/penyakit/', $filename);
             $dtUpload->gambar = $filename;
-        } else {
-            return back();
         }
         // $dtUpload->gambar = $request->gambar;
         $dtUpload->save();
