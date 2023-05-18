@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BasisPengetahuan;
 use App\Models\Gejala;
 use App\Models\Penyakit;
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
+use App\Models\BasisPengetahuan;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Laravel\Ui\Presets\React;
 
 class AdminController extends Controller
@@ -88,7 +90,14 @@ class AdminController extends Controller
         $dtUpload->nama_penyakit = $request->nama_penyakit;
         $dtUpload->det_penyakit = $request->det_penyakit;
         $dtUpload->solusi_penyakit = $request->solusi_penyakit;
-        $dtUpload->gambar = $request->gambar;
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->storeAs('public/penyakit/', $filename);
+            $dtUpload->gambar = $filename;
+        }
+        // $dtUpload->gambar = $request->gambar;
         $dtUpload->save();
 
         Alert::success('Informasi Pesan!', 'Penyakit Baru Berhasil ditambahkan');
@@ -113,9 +122,7 @@ class AdminController extends Controller
         $dtUpload->nama_penyakit = $request->nama_penyakit;
         $dtUpload->det_penyakit = $request->det_penyakit;
         $dtUpload->solusi_penyakit = $request->solusi_penyakit;
-        $dtUpload->gambar = $request->$namafile;
-
-        $nm->move(public_path() . '/storage/img/penyakit', $namafile);
+        $dtUpload->gambar = $request->gambar;
         $dtUpload->save();
 
         Alert::success('Informasi Pesan!', 'Penyakit Telah Berhasil diedit');
@@ -125,8 +132,6 @@ class AdminController extends Controller
     public function destroypenyakit($id)
     {
         $penyakit = Penyakit::findOfFail($id);
-        $img = public_path('/storage/img/penyakit' . $penyakit->gambar);
-        File::delete($img);
         $penyakit->delete();
 
         Alert::success('Informasi Pesan!', 'Penyakit Telah Berhasil dihapus');
