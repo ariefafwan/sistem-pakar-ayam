@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BasisPengetahuan;
 use App\Models\Gejala;
 use App\Models\Penyakit;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Ui\Presets\React;
+use App\Models\BasisPengetahuan;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
@@ -84,9 +85,17 @@ class AdminController extends Controller
     public function storepenyakit(Request $request)
     {
         $dtUpload = new Penyakit();
+        $dtUpload->nama_penyakit = $request->nama_penyakit;
         $dtUpload->det_penyakit = $request->det_penyakit;
         $dtUpload->solusi_penyakit = $request->solusi_penyakit;
-        $dtUpload->gambar = $request->gambar;
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->storeAs('public/penyakit/', $filename);
+            $dtUpload->gambar = $filename;
+        }
+        // $dtUpload->gambar = $request->gambar;
         $dtUpload->save();
 
         Alert::success('Informasi Pesan!', 'Penyakit Baru Berhasil ditambahkan');
@@ -105,7 +114,19 @@ class AdminController extends Controller
         $dtUpload = Penyakit::findOrFail($id);
         $dtUpload->det_penyakit = $request->det_penyakit;
         $dtUpload->solusi_penyakit = $request->solusi_penyakit;
-        $dtUpload->gambar = $request->gambar;
+        if ($request->hasFile('gambar')) {
+            // menghapus gambar lama
+            if ($request->oldImage) {
+                Storage::delete('public/penyakit/' . $dtUpload->gambar);
+            }
+            // menyimpan gambar baru
+            $file = $request->file('gambar');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->storeAs('public/penyakit/', $filename);
+            $dtUpload->gambar = $filename;
+        }
+        // $dtUpload->gambar = $request->gambar;
         $dtUpload->save();
 
         Alert::success('Informasi Pesan!', 'Penyakit Telah Berhasil diedit');
@@ -114,7 +135,10 @@ class AdminController extends Controller
 
     public function destroypenyakit($id)
     {
-        $penyakit = Penyakit::findOfFail($id);
+        $penyakit = Penyakit::findOrFail($id);
+        if ($penyakit->gambar) {
+            Storage::delete('public/penyakit/' . $penyakit->gambar);
+        }
         $penyakit->delete();
 
         Alert::success('Informasi Pesan!', 'Penyakit Telah Berhasil dihapus');
