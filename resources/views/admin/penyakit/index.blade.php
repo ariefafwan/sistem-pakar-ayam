@@ -31,16 +31,8 @@
                                 <td>{{ $row->nama_penyakit }}</td>
                                 <td>{{ $row->det_penyakit }}</td>
                                 <td>{{ $row->solusi_penyakit }}</td>
-                                <td>
-                                    @if (!empty($row->gambar))
-                                    <img src="{{ asset('storage/penyakit/'.$row->gambar) }}" class="img-thumbnail"
-                                        alt="{{ $row->nama_penyakit }}" style="max-width:
-                                        150px;">
-                                    @else
-                                    <img src="{{ asset('img/6.jpg') }}" class="img-thumbnail"
-                                        alt="{{ $row->nama_penyakit }}" style="max-width:
-                                    150px;">
-                                    @endif
+                                <td align="center">
+                                    <img src="{{ asset('storage/penyakit/'.$row->gambar) }}" alt="{{ $row->nama_penyakit }}" class="img-thumbnail" style="max-width:150px;">
                                 </td>
                                 <td align="center">
                                     <div class="btn-group">
