@@ -6,6 +6,7 @@ use App\Models\Gejala;
 use App\Models\Penyakit;
 use Illuminate\Http\Request;
 use App\Models\BasisPengetahuan;
+use App\Models\Hasil;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -195,5 +196,18 @@ class AdminController extends Controller
 
         Alert::success('Informasi Pesan!', 'Basis Pengetahuan Telah Berhasil dihapus');
         return redirect()->route('basis.index');
+    }
+
+    public function diagnosa()
+    {
+        $hasil = Hasil::latest()->paginate(10);
+        $page = 'Hasil Diagnosa';
+        return view('admin.diagnosa.index', compact('page', 'hasil'));
+    }
+
+    public function creatediagnosa()
+    {
+        $page = 'Tambah Diagnosa';
+        return view('admin.diagnosa.create', compact('page'));
     }
 }
