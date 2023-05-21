@@ -5,23 +5,24 @@
     @csrf
     <div class="form-group mb-3">
         <label for="penyakit" class="form-label">Penyakit</label>
-        <select class="form-control" name="penyakit_id" id="penyakit" autofocus required>
+        <select class="form-control" name="penyakit_id" id="penyakit" required>
             <option>--Pilih Penyakit--</option>
-            @foreach ($penyakit as $p)
+            @foreach ($penyakits as $p)
             <option value="{{ $p->id }}">{{ $p->nama_penyakit }}</option>
             @endforeach
         </select>
     </div>
     <div class="form-group mb-3">
-        <label for="gejala" class="form-label">Gejala</label>
-        <select class="form-control" name="gejala_id" id="gejala" required>
-            <option>--Pilih Gejala--</option>
-            @foreach ($gejala as $g)
-            <option value="{{ $g->id }}">{{ $g->nama_gejala }}</option>
+        <label for="" class="form-label">Gejala</label>
+        <div class="col-12 d-flex flex-row">
+            @foreach ($gejalas as $row)
+            <div class="col-3">
+                <label for="gejala[{{ $row->id }}]" class="form-label">{{ $row->nama_gejala }}</label>
+                <input type="checkbox" name="gejala_id[]" id="gejala[{{ $row->id }}]" value="{{ $row->id }}">
+            </div>
             @endforeach
-        </select>
+        </div>
     </div>
-
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 @endsection

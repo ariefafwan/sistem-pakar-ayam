@@ -89,13 +89,13 @@ class AdminController extends Controller
         $dtUpload->det_penyakit = $request->det_penyakit;
         $dtUpload->solusi_penyakit = $request->solusi_penyakit;
         $file = $request->file('gambar');
-            if ($request->validate([
-                'gambar' => 'required|mimes:png,jpg,jpeg|max:2048']))
-            {
-                $filename = $file->getClientOriginalName();
-                $file->storeAs('public/penyakit/', $filename);
-                $dtUpload->gambar = $filename;
-            }
+        if ($request->validate([
+            'gambar' => 'required|mimes:png,jpg,jpeg|max:2048'
+        ])) {
+            $filename = $file->getClientOriginalName();
+            $file->storeAs('public/penyakit/', $filename);
+            $dtUpload->gambar = $filename;
+        }
         $dtUpload->save();
 
         Alert::success('Informasi Pesan!', 'Penyakit Baru Berhasil ditambahkan');
@@ -116,8 +116,8 @@ class AdminController extends Controller
         $dtUpload->solusi_penyakit = $request->solusi_penyakit;
         $file = $request->file('gambar');
         if ($request->validate([
-            'gambar' => 'required|mimes:png,jpg,jpeg|max:2048']))
-        {
+            'gambar' => 'required|mimes:png,jpg,jpeg|max:2048'
+        ])) {
             // menghapus gambar lama
             if ($request->oldImage) {
                 Storage::delete('public/penyakit/' . $dtUpload->gambar);
@@ -156,16 +156,23 @@ class AdminController extends Controller
     public function createbasis()
     {
         $user = Auth::user()->id;
+        $penyakits = Penyakit::all();
+        $gejalas = Gejala::all();
         $page = "Tambah Basis Pengetahuan";
-        return view('admin.basispengetahuan.create', compact('user', 'page'));
+        return view('admin.basispengetahuan.create', compact('user', 'page', 'penyakits', 'gejalas'));
     }
 
     public function storebasis(Request $request)
     {
-        $dtUpload = new BasisPengetahuan();
-        $dtUpload->penyakit_id = $request->penyakit_id;
-        $dtUpload->gejala_id = $request->gejala_id;
-        $dtUpload->save();
+        $gejala = $request->gejala_id;
+        $jumlah_dipilih = count($gejala);
+
+        for ($i = 0; $i < $jumlah_dipilih; $i++) {
+            $dtUpload = new BasisPengetahuan();
+            $dtUpload->penyakit_id = $request->penyakit_id;
+            $dtUpload->gejala_id = $request->gejala_id[$i];
+            $dtUpload->save();
+        }
 
         Alert::success('Informasi Pesan!', 'Basis Pengetahuan Baru Berhasil ditambahkan');
         return redirect()->route('basis.index');
