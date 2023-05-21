@@ -7,6 +7,7 @@ use App\Models\Penyakit;
 use Illuminate\Http\Request;
 use App\Models\BasisPengetahuan;
 use App\Models\Hasil;
+use App\Models\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -102,6 +103,15 @@ class AdminController extends Controller
         return redirect()->route('penyakit.index');
     }
 
+    public function showpenyakit($id)
+    {
+        $page = "Detail Penyakit";
+        $penyakit = Penyakit::findOrFail($id);
+        $basis = BasisPengetahuan::where('penyakit_id', $penyakit->id)->get();
+        $gejala = Gejala::all();
+        return view('admin.penyakit.show', compact('page', 'penyakit', 'basis', 'gejala'));
+    }
+
     public function editpenyakit($id)
     {
         $page = "Edit Penyakit";
@@ -157,16 +167,20 @@ class AdminController extends Controller
     {
         $user = Auth::user()->id;
         $page = "Tambah Basis Pengetahuan";
-        return view('admin.basispengetahuan.create', compact('user', 'page'));
+        $penyakit = Penyakit::all();
+        $gejala = Gejala::all();
+        return view('admin.basispengetahuan.create', compact('user', 'page', 'penyakit', 'gejala'));
     }
 
     public function storebasis(Request $request)
     {
+        $cek = implode('AND', $request->rule);
         $dtUpload = new BasisPengetahuan();
         $dtUpload->penyakit_id = $request->penyakit_id;
-        $dtUpload->gejala_id = $request->gejala_id;
+        // $dtUpload->gejala_id = $request->gejala_id;
+        $dtUpload->rule = $cek;
         $dtUpload->save();
-
+        // dd($cek);
         Alert::success('Informasi Pesan!', 'Basis Pengetahuan Baru Berhasil ditambahkan');
         return redirect()->route('basis.index');
     }
@@ -208,6 +222,58 @@ class AdminController extends Controller
     public function creatediagnosa()
     {
         $page = 'Tambah Diagnosa';
-        return view('admin.diagnosa.create', compact('page'));
+        $gejala = Gejala::all();
+        $cekgejala = session("cek");
+        return view('admin.diagnosa.create', compact('page', 'gejala', 'cekgejala'));
+    }
+
+    public function adddiagnosa(Request $request)
+    {
+        $cek = implode('-', $request->cek);
+        // $basis = BasisPengetahuan::select('penyakit_id')
+        //                             ->SelectRaw("GROUP_CONCAT(gejala_id SEPARATOR '-') as `gejala`")
+        //                             ->groupBy('penyakit_id')
+        //                             // ->whereRaw('gejala', '<>' , $cekgejala)
+        //                             ->get();
+        // $rule = Rule::where('rule', $cekgejala)->get();
+        $rule = Rule::where('rule','like',"%".$cek."%")->paginate(5);
+        return view('admin.diagnosa.hasil', compact('rule'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function hasildiagnosa()
+    {
+        $cekgejala = session("cekgejala");
+    }
+
+    public function test(Request $request)
+    {
+        // $hasil = Hasil::select('user_id', 'aspek_id', 'jenis')
+        //     ->selectRaw("SUM(n_bobot) / count(n_bobot) as nilai")
+        //     ->groupBy('user_id')
+        //     ->groupBy('aspek_id')
+        //     ->groupBy('jenis')
+        //     ->orderBy('user_id', 'asc')
+        //     ->orderBy('aspek_id', 'asc')
+        //     ->get();
+        // $basis = BasisPengetahuan::select('penyakit_id')
+        //                             ->SelectRaw("GROUP_CONCAT(gejala_id SEPARATOR '-') as `gejala`")
+        //                             ->groupBy('penyakit_id')
+        //                             ->where('penyakit_id', '2')
+        //                             ->pluck('gejala');
+        // foreach ($basis as $p)
+        // {
+        //     $a = explode("-", $p);
+        //     $sql1 = Gejala::where('id', $a)->get();
+        // }
+        // dd($sql1);
+
+        $input = "3AND4AND5";
+        $rule = Rule::all()->where('rule', 'like', "%".$input."%");
+
+        foreach ($rule as $ru)
+        {
+            $haha = $ru->penyakit_id;
+            dd($haha);
+        }
     }
 }

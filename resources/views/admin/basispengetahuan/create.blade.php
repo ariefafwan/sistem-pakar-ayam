@@ -13,13 +13,17 @@
         </select>
     </div>
     <div class="form-group mb-3">
-        <label for="gejala" class="form-label">Gejala</label>
-        <select class="form-control" name="gejala_id" id="gejala" required>
+        <label for="gejala" class="form-label"> Pilih Gejala</label>
+        <br>
+        {{-- <select class="form-control" name="gejala_id" id="gejala" required>
             <option>--Pilih Gejala--</option>
             @foreach ($gejala as $g)
             <option value="{{ $g->id }}">{{ $g->nama_gejala }}</option>
             @endforeach
-        </select>
+        </select> --}}
+        @foreach ($gejala as $row)  
+        <input type="checkbox" value="{{ $row->id }}" id="gejala" name="rule[]">{{ $row->nama_gejala }}<br>
+        @endforeach
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

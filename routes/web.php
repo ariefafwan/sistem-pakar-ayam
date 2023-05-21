@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/editpenyakit/{id}', [AdminController::class, 'editpenyakit'])->name('penyakit.edit');
     Route::post('/editpenyakit/{id}/update', [AdminController::class, 'updatepenyakit'])->name('penyakit.update');
     Route::post('/destroypenyakit/{id}/destroy', [AdminController::class, 'destroypenyakit'])->name('penyakit.destroy');
+    Route::get('detailpenyakit/{id}', [AdminController::class, 'showpenyakit'])->name('penyakit.show');
     //basis pengetahuan
     Route::get('/basispengetahuan', [AdminController::class, 'basispengetahuan'])->name('basis.index');
     Route::get('/createbasispengetahuan', [AdminController::class, 'createbasis'])->name('basis.create');
@@ -47,5 +48,9 @@ Route::middleware('auth')->group(function () {
     //diagnosa
     Route::get('/diagnosa', [AdminController::class, 'diagnosa'])->name('diagnosa.index');
     Route::get('/creatediagnosa', [AdminController::class, 'creatediagnosa'])->name('diagnosa.create');
+    Route::post('/creatediagnosa', [AdminController::class, 'adddiagnosa'])->name('diagnosa.store');
+    Route::get('/hasildiagnosa', [AdminController::class, 'hasildiagnosa'])->name('hasil.index');
+    //test
+    Route::get('/test', [AdminController::class, 'test'])->name('test');
 });
 Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout']);

@@ -37,8 +37,8 @@
                                 <td align="center">
                                     <div class="btn-group">
                                         <hr>
-                                        <a href="{{ route('penyakit.edit',$row->id) }}" class="btn btn-warning mr-2"><i
-                                                class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <a href="{{ route('penyakit.show',$row->id) }}" class="btn btn-warning mr-2"><i
+                                                class="fa fa-eye" aria-hidden="true"></i></a>
                                         <hr>
                                         <a href="javascript:void(0)" class="btn btn-danger"
                                             onclick="event.preventDefault();
