@@ -49,7 +49,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/diagnosa', [AdminController::class, 'diagnosa'])->name('diagnosa.index');
     Route::get('/creatediagnosa', [AdminController::class, 'creatediagnosa'])->name('diagnosa.create');
     Route::post('/creatediagnosa', [AdminController::class, 'adddiagnosa'])->name('diagnosa.store');
-    Route::get('/hasildiagnosa', [AdminController::class, 'hasildiagnosa'])->name('hasil.index');
     //test
     Route::get('/test', [AdminController::class, 'test'])->name('test');
 });

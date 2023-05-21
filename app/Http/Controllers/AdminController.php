@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gejala;
 use App\Models\Penyakit;
+use Database\Seeders\RuleSeeder;
 use Illuminate\Http\Request;
 use App\Models\BasisPengetahuan;
 use App\Models\Hasil;
@@ -176,7 +177,7 @@ class AdminController extends Controller
     {
         $gejala = $request->gejala_id;
         $jumlah_dipilih = count($gejala);
-        $cek = implode('AND', $request->rule);
+        $rule = implode('AND', $request->gejala_id);
 
         for ($i = 0; $i < $jumlah_dipilih; $i++) {
             $dtUpload = new BasisPengetahuan();
@@ -184,6 +185,11 @@ class AdminController extends Controller
             $dtUpload->gejala_id = $request->gejala_id[$i];
             $dtUpload->save();
         }
+
+        $data = new Rule();
+        $data->penyakit_id = $request->penyakit_id;
+        $data->rule = $rule;
+        $data->save();
 
         Alert::success('Informasi Pesan!', 'Basis Pengetahuan Baru Berhasil ditambahkan');
         return redirect()->route('basis.index');
@@ -225,7 +231,7 @@ class AdminController extends Controller
 
     public function creatediagnosa()
     {
-        $page = 'Tambah Diagnosa';
+        $page = "Tambah Diagnosa";
         $gejala = Gejala::all();
         $cekgejala = session("cek");
         return view('admin.diagnosa.create', compact('page', 'gejala', 'cekgejala'));
@@ -233,20 +239,10 @@ class AdminController extends Controller
 
     public function adddiagnosa(Request $request)
     {
-        $cek = implode('-', $request->cek);
-        // $basis = BasisPengetahuan::select('penyakit_id')
-        //                             ->SelectRaw("GROUP_CONCAT(gejala_id SEPARATOR '-') as `gejala`")
-        //                             ->groupBy('penyakit_id')
-        //                             // ->whereRaw('gejala', '<>' , $cekgejala)
-        //                             ->get();
-        // $rule = Rule::where('rule', $cekgejala)->get();
-        $rule = Rule::where('rule','like',"%".$cek."%")->paginate(5);
-        return view('admin.diagnosa.hasil', compact('rule'))->with('i', (request()->input('page', 1) - 1) * 5);
-    }
-
-    public function hasildiagnosa()
-    {
-        $cekgejala = session("cekgejala");
+        $cek = implode('AND', $request->cek);
+        $page = "Hasil Diagnosa";
+        $rule = Rule::where('rule','like',"%".$cek."%")->get();
+        return view('admin.diagnosa.hasil', compact('rule', 'page'));
     }
 
     public function test(Request $request)
@@ -271,13 +267,13 @@ class AdminController extends Controller
         // }
         // dd($sql1);
 
-        $input = "3AND4AND5";
-        $rule = Rule::all()->where('rule', 'like', "%".$input."%");
+        // $input = "3AND4AND5";
+        // $rule = Rule::all()->where('rule', 'like', "%".$input."%");
 
-        foreach ($rule as $ru)
-        {
-            $haha = $ru->penyakit_id;
-            dd($haha);
-        }
+        // foreach ($rule as $ru)
+        // {
+        //     $haha = $ru->penyakit_id;
+        //     dd($haha);
+        // }
     }
 }
