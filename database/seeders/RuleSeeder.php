@@ -13,9 +13,9 @@ class RuleSeeder extends Seeder
      */
     public function run(): void
     {
-        Rule::Create([
-            'penyakit_id' => '1',
-            'rule' => '3AND4AND5'
-        ]);
+        // Rule::Create([
+        //     'penyakit_id' => '1',
+        //     'rule' => '3AND4AND5'
+        // ]);
     }
 }

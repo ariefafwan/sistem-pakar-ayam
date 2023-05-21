@@ -13,34 +13,6 @@ class BasisPengetahuanSeeder extends Seeder
      */
     public function run(): void
     {
-        BasisPengetahuan::create([
-            'penyakit_id' => '1',
-            'gejala_id' => '5'
-        ]);
-
-        BasisPengetahuan::create([
-            'penyakit_id' => '1',
-            'gejala_id' => '4'
-        ]);
-
-        BasisPengetahuan::create([
-            'penyakit_id' => '1',
-            'gejala_id' => '3'
-        ]);
-        
-        BasisPengetahuan::create([
-            'penyakit_id' => '2',
-            'gejala_id' => '1'
-        ]);
-        
-        BasisPengetahuan::create([
-            'penyakit_id' => '2',
-            'gejala_id' => '2'
-        ]);
-
-        BasisPengetahuan::create([
-            'penyakit_id' => '2',
-            'gejala_id' => '4'
-        ]);
+        //
     }
 }
