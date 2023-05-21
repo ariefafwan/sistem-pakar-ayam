@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Gejala;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GejalaSeeder::class);
         $this->call(PenyakitSeeder::class);
         $this->call(BasisPengetahuanSeeder::class);
+        $this->call(RuleSeeder::class);
     }
 }

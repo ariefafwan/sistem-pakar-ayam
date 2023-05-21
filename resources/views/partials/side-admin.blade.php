@@ -25,7 +25,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('diagnosa.create') }}">
                 <i class="fa fa-search-plus" aria-hidden="true"></i>
                 <span class="ml-2">Diagnosa</span>
             </a>

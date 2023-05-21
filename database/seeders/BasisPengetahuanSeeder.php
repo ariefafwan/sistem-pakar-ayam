@@ -20,12 +20,12 @@ class BasisPengetahuanSeeder extends Seeder
 
         BasisPengetahuan::create([
             'penyakit_id' => '1',
-            'gejala_id' => '3'
+            'gejala_id' => '4'
         ]);
 
         BasisPengetahuan::create([
             'penyakit_id' => '1',
-            'gejala_id' => '4'
+            'gejala_id' => '3'
         ]);
         
         BasisPengetahuan::create([
@@ -34,12 +34,12 @@ class BasisPengetahuanSeeder extends Seeder
         ]);
         
         BasisPengetahuan::create([
-            'penyakit_id' => '1',
+            'penyakit_id' => '2',
             'gejala_id' => '2'
         ]);
 
         BasisPengetahuan::create([
-            'penyakit_id' => '1',
+            'penyakit_id' => '2',
             'gejala_id' => '4'
         ]);
     }
