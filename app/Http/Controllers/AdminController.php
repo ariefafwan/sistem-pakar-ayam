@@ -241,7 +241,7 @@ class AdminController extends Controller
     {
         $cek = implode('AND', $request->cek);
         $page = "Hasil Diagnosa";
-        $rule = Rule::where('rule','like',"%".$cek."%")->get();
+        $rule = Rule::where('rule', 'like', "%" . $cek . "%")->get();
         return view('admin.diagnosa.hasil', compact('rule', 'page'));
     }
 
