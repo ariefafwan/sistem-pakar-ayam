@@ -23,23 +23,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($basis as $index => $row)
+                            @foreach($penyakit as $index => $row)
                             <tr>
                                 <th scope="row">{{ $index + 1 }}</th>
                                 <td>{{ $row->penyakit->nama_penyakit }}</td>
-                                <td>{{ $row->gejala->nama_gejala }}</td>
+                                <td>
+                                    @foreach ($basis as $item)
+                                    @if ($item->penyakit_id == $row->penyakit_id)
+                                    <ul>
+                                        <li>{{ $item->gejala->nama_gejala }}</li>
+                                    </ul>
+                                    @endif
+                                    @endforeach
+                                </td>
                                 <td align="center">
                                     <div class="btn-group">
                                         <hr>
-                                        <a href="{{ route('basis.edit',$row->id) }}" class="btn btn-warning mr-2"><i
-                                                class="fa fa-pencil" aria-hidden="true"></i></a>
-                                        <hr>
                                         <a href="javascript:void(0)" class="btn btn-danger" onclick="event.preventDefault();
-                                                document.getElementById('basis-delete-form-{{$row->id}}').submit();">
+                                                document.getElementById('basis-delete-form-{{$row->penyakit_id}}').submit();">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
-                                        <form id="basis-delete-form-{{$row->id}}"
-                                            action="{{ route('basis.destroy',$row->id) }}" method="POST"
+                                        <form id="basis-delete-form-{{$row->penyakit_id}}"
+                                            action="{{ route('basis.destroy',$row->penyakit_id) }}" method="POST"
                                             style="display: none;">
                                             @csrf
                                         </form>

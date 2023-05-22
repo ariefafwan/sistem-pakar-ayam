@@ -26,8 +26,7 @@
                     <li>{{ $item->gejala->nama_gejala }}</li>
                 </ul>
             @endforeach
-                <a href="" class="btn btn-sm btn-success" target="_blank">Tambah Gejala</a>
-               </td>
+          </td>
           </tr>
           <tr>
           <td>Solusi</td>
@@ -36,6 +35,7 @@
           </tr>
           </table>
           <a class="btn btn-sm btn-danger" href="{{ route('penyakit.index') }}">Kembali</a>
+          <a class="btn btn-sm btn-warning" href="{{ route('penyakit.edit', $penyakit->id) }}">Edit</a>
         </div>
       </div>
 </section>
