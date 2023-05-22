@@ -17,6 +17,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">#</th>
+                                <th class="text-center">Kode Penyakit</th>
                                 <th class="text-center">Name</th>
                                 <th class="text-center">Detail</th>
                                 {{-- <th class="text-center">Solusi</th> --}}
@@ -28,6 +29,7 @@
                             @foreach($penyakit as $index => $row)
                             <tr>
                                 <th scope="row">{{ $index + 1 }}</th>
+                                <td>{{ $row->kd_penyakit }}</td>
                                 <td>{{ $row->nama_penyakit }}</td>
                                 <td>{{ $row->det_penyakit }}</td>
                                 {{-- <td>{{ $row->solusi_penyakit }}</td> --}}

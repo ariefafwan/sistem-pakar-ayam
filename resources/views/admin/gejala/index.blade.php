@@ -17,6 +17,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">#</th>
+                                <th class="text-center">Kode Gejala</th>
                                 <th class="text-center">Name</th>
                                 <th class="text-center">Aksi</th>
                             </tr>
@@ -25,6 +26,7 @@
                             @foreach($gejala as $index => $row)
                             <tr>
                                 <th scope="row">{{ $index + 1 }}</th>
+                                <td>{{ $row->kd_gejala }}</td>
                                 <td>{{ $row->nama_gejala }}</td>
                                 <td align="center">
                                     <div class="btn-group">
