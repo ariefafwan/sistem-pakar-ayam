@@ -1,7 +1,6 @@
 @extends('admin.app')
 
 @section('body')
-
     <hr>
 
     <div class="row my-4">

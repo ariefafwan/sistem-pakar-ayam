@@ -1,24 +1,19 @@
-<nav class="navbar navbar-dark bg-dark p-2">
-    <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
-        <a class="navbar-brand text-center text-light" href="{{ route('home') }}">
-                SISTEM PAKAR FORWARD CHAINING
-        </a>
-        <button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse"
-            data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="route('home')">Forward Channing</a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fa fa-list-ul" aria-hidden="true"></i></button>
+    <!---->
+    <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
     </div>
-    <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-expanded="false">
-                Hello, {{ Auth::user()->name }}
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="{{ route('home') }}">Home</a></li>
+    <!-- Navbar-->
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i> Hello! {{ Auth::user()->name }}</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="route('home')">Home</a></li>
                 <li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#LogoutModal">Logout</a>
-                </li>
             </ul>
-        </div>
-    </div>
+        </li>
+    </ul>
 </nav>
