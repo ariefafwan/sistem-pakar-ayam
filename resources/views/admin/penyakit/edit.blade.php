@@ -5,9 +5,13 @@
     enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
+        <label for="kd_penyakit" class="form-label">Kode Penyakit</label>
+        <input type="text" class="form-control" id="kd_penyakit" name="kd_penyakit" value="{{ old('kd_penyakit', $penyakit->kd_penyakit) }}" autofocus>
+    </div>
+    <div class="mb-3">
         <label for="nama_penyakit" class="form-label">Nama Penyakit</label>
         <input type="text" class="form-control" id="nama_penyakit" name="nama_penyakit"
-            value="{{ old('nama_penyakit', $penyakit->nama_penyakit) }}" autofocus>
+            value="{{ old('nama_penyakit', $penyakit->nama_penyakit) }}">
     </div>
     <div class="mb-3">
         <label for="det_penyakit" class="form-label">Detail Penyakit</label>
@@ -24,6 +28,6 @@
         <input type="hidden" name="oldImage" value="{{ $penyakit->gambar }}">
         <input class="form-control" type="file" id="gambar" name="gambar">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-success">Edit</button>
 </form>
 @endsection

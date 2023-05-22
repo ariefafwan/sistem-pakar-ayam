@@ -19,8 +19,8 @@
                                 <th class="text-center">#</th>
                                 <th class="text-center">Name</th>
                                 <th class="text-center">Detail</th>
-                                <th class="text-center">Solusi</th>
-                                <th class="text-center">Gambar</th>
+                                {{-- <th class="text-center">Solusi</th> --}}
+                                {{-- <th class="text-center">Gambar</th> --}}
                                 <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -30,10 +30,10 @@
                                 <th scope="row">{{ $index + 1 }}</th>
                                 <td>{{ $row->nama_penyakit }}</td>
                                 <td>{{ $row->det_penyakit }}</td>
-                                <td>{{ $row->solusi_penyakit }}</td>
-                                <td align="center">
+                                {{-- <td>{{ $row->solusi_penyakit }}</td> --}}
+                                {{-- <td align="center">
                                     <img src="{{ asset('storage/penyakit/'.$row->gambar) }}" alt="{{ $row->nama_penyakit }}" class="img-thumbnail" style="max-width:150px;">
-                                </td>
+                                </td> --}}
                                 <td align="center">
                                     <div class="btn-group">
                                         <hr>

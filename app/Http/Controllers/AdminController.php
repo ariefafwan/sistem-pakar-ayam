@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Gejala;
 use App\Models\Penyakit;
-use Database\Seeders\RuleSeeder;
 use Illuminate\Http\Request;
 use App\Models\BasisPengetahuan;
 use App\Models\Hasil;
@@ -34,13 +33,13 @@ class AdminController extends Controller
     public function storegejala(Request $request)
     {
         $dtUpload = new Gejala();
+        $dtUpload->kd_gejala = $request->kd_gejala;
         $dtUpload->nama_gejala = $request->nama_gejala;
         $dtUpload->save();
 
         Alert::success('Informasi Pesan!', 'Gejala Baru Berhasil ditambahkan');
         return redirect()->route('gejala.index');
     }
-
 
     public function editgejala($id)
     {
@@ -52,6 +51,7 @@ class AdminController extends Controller
     public function updategejala(Request $request, $id)
     {
         $dtUpload = Gejala::findOrFail($id);
+        $dtUpload->kd_gejala = $request->kd_gejala;
         $dtUpload->nama_gejala = $request->nama_gejala;
         $dtUpload->save();
 
@@ -87,6 +87,7 @@ class AdminController extends Controller
     public function storepenyakit(Request $request)
     {
         $dtUpload = new Penyakit();
+        $dtUpload->kd_penyakit = $request->kd_penyakit;
         $dtUpload->nama_penyakit = $request->nama_penyakit;
         $dtUpload->det_penyakit = $request->det_penyakit;
         $dtUpload->solusi_penyakit = $request->solusi_penyakit;
@@ -123,6 +124,8 @@ class AdminController extends Controller
     public function updatepenyakit(Request $request, $id)
     {
         $dtUpload = Penyakit::findOrFail($id);
+        $dtUpload->kd_penyakit = $request->kd_penyakit;
+        $dtUpload->nama_penyakit = $request->nama_penyakit;
         $dtUpload->det_penyakit = $request->det_penyakit;
         $dtUpload->solusi_penyakit = $request->solusi_penyakit;
         $file = $request->file('gambar');
@@ -160,8 +163,9 @@ class AdminController extends Controller
     {
         $user = Auth::user()->id;
         $page = "Daftar Basis Pengetahuan";
+        $penyakit = BasisPengetahuan::select('penyakit_id')->distinct()->get();
         $basis = BasisPengetahuan::all();
-        return view('admin.basispengetahuan.index', compact('user', 'page', 'basis'));
+        return view('admin.basispengetahuan.index', compact('user', 'page', 'basis', 'penyakit'));
     }
 
     public function createbasis()
@@ -195,28 +199,12 @@ class AdminController extends Controller
         return redirect()->route('basis.index');
     }
 
-    public function editbasis($id)
+    public function destroybasis($penyakit_id)
     {
-        $page = "Edit Basis Pengetahuan";
-        $basis = BasisPengetahuan::findOrFail($id);
-        return view('admin.basispengetahuan.edit', compact('page', 'basis'));
-    }
-
-    public function updatebasis(Request $request, $id)
-    {
-        $dtUpload = BasisPengetahuan::findOrFail($id);
-        $dtUpload->penyakit_id = $request->penyakit_id;
-        $dtUpload->gejala_id = $request->gejala_id;
-        $dtUpload->save();
-
-        Alert::success('Informasi Pesan!', 'Basis Pengetahuan Telah Berhasil diedit');
-        return redirect()->route('basis.index');
-    }
-
-    public function destroybasis($id)
-    {
-        $basis = BasisPengetahuan::findOrFail($id);
+        $basis = BasisPengetahuan::where('penyakit_id', $penyakit_id);
+        $rule = Rule::where('penyakit_id', $penyakit_id);
         $basis->delete();
+        $rule->delete();
 
         Alert::success('Informasi Pesan!', 'Basis Pengetahuan Telah Berhasil dihapus');
         return redirect()->route('basis.index');
@@ -245,35 +233,33 @@ class AdminController extends Controller
         return view('admin.diagnosa.hasil', compact('rule', 'page'));
     }
 
-    public function test(Request $request)
-    {
-        // $hasil = Hasil::select('user_id', 'aspek_id', 'jenis')
-        //     ->selectRaw("SUM(n_bobot) / count(n_bobot) as nilai")
-        //     ->groupBy('user_id')
-        //     ->groupBy('aspek_id')
-        //     ->groupBy('jenis')
-        //     ->orderBy('user_id', 'asc')
-        //     ->orderBy('aspek_id', 'asc')
-        //     ->get();
-        // $basis = BasisPengetahuan::select('penyakit_id')
-        //                             ->SelectRaw("GROUP_CONCAT(gejala_id SEPARATOR '-') as `gejala`")
-        //                             ->groupBy('penyakit_id')
-        //                             ->where('penyakit_id', '2')
-        //                             ->pluck('gejala');
-        // foreach ($basis as $p)
-        // {
-        //     $a = explode("-", $p);
-        //     $sql1 = Gejala::where('id', $a)->get();
-        // }
-        // dd($sql1);
+    // public function test(Request $request)
+    // {
+    //     $hasil = Hasil::select('user_id', 'aspek_id', 'jenis')
+    //         ->selectRaw("SUM(n_bobot) / count(n_bobot) as nilai")
+    //         ->groupBy('user_id')
+    //         ->groupBy('aspek_id')
+    //         ->groupBy('jenis')
+    //         ->orderBy('user_id', 'asc')
+    //         ->orderBy('aspek_id', 'asc')
+    //         ->get();
+    //     $basis = BasisPengetahuan::select('penyakit_id')
+    //         ->SelectRaw("GROUP_CONCAT(gejala_id SEPARATOR '-') as `gejala`")
+    //         ->groupBy('penyakit_id')
+    //         ->where('penyakit_id', '2')
+    //         ->pluck('gejala');
+    //     foreach ($basis as $p) {
+    //         $a = explode("-", $p);
+    //         $sql1 = Gejala::where('id', $a)->get();
+    //     }
+    //     dd($sql1);
 
-        // $input = "3AND4AND5";
-        // $rule = Rule::all()->where('rule', 'like', "%".$input."%");
+    //     $input = "3AND4AND5";
+    //     $rule = Rule::all()->where('rule', 'like', "%" . $input . "%");
 
-        // foreach ($rule as $ru)
-        // {
-        //     $haha = $ru->penyakit_id;
-        //     dd($haha);
-        // }
-    }
+    //     foreach ($rule as $ru) {
+    //         $haha = $ru->penyakit_id;
+    //         dd($haha);
+    //     }
+    // }
 }
