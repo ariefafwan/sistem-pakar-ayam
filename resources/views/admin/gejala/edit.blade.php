@@ -1,5 +1,4 @@
 @extends('admin.app')
-
 @section('body')
 <form class="col-lg-6" action="{{ route('gejala.update', $gejala->id) }}" method="post">
     @csrf
