@@ -9,12 +9,12 @@
                     <div class="col-xs-16 mb-5">
                         <div class="box">
                             <div class="box-body">
-                                <table id="category-table" class="table table-light table-striped table-bordered table-hover">
-                                    <thead>
+                                <table id="category-table" class="table table-bordered table-hover">
+                                    <thead style="background-color: black">
                                         <tr>
-                                            <th style="width: 5%" class="text-center">#</th>
-                                            <th style="width: 30%" class="text-center">Name</th>
-                                            <th class="text-center">Detail</th>
+                                            <th style="width: 5%" class="text-white text-center">#</th>
+                                            <th style="width: 30%" class="text-white text-center">Name</th>
+                                            <th class="text-white text-center">Detail</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -36,11 +36,11 @@
                             <div class="box-body">
                             <form id="gejala" method="POST" action="{{ route('diagnosa.user') }}" enctype="form-data/multipart">
                                 @csrf
-                                <table id="category-table" class="table table-light table-striped table-bordered table-hover">
-                                    <thead>
+                                <table id="category-table" class="table table-bordered table-hover">
+                                    <thead style="background-color:darkcyan">
                                         <tr>
-                                            <th class="text-center">Gejala</th>
-                                            <th style="width: 30%" class="text-center">Ya/Tidak</th>
+                                            <th class="text-white text-center">Gejala</th>
+                                            <th style="width: 30%" class="text-white text-center">Ya/Tidak</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -48,7 +48,7 @@
                                         <tr>
                                             <td>{{ $g->nama_gejala }}</td>
                                             <td>
-                                                <select class="form-select" name="cek[]" id="diagnosa">
+                                                <select class="form-select text-center" name="cek[]" id="diagnosa">
                                                     <option>Tidak</option>
                                                     <option value="{{ $g->id }}">Ya</option>
                                                 </select>
