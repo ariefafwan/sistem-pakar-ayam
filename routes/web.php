@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,14 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [UserController::class, 'welcome'])->name('welcome');
+Route::post('/hasildiagnosa', [UserController::class, 'diagnosauser'])->name('diagnosa.user');
+Route::get('/hasildiagnosa', [UserController::class, 'hasiluser'])->name('hasil.user');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware('auth')->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //gejala
     Route::get('/gejala', [AdminController::class, 'gejala'])->name('gejala.index');
     Route::get('/creategejela', [AdminController::class, 'creategejala'])->name('gejala.create');

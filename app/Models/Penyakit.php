@@ -10,7 +10,7 @@ class Penyakit extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function basis()
+    public function basispengetahuan()
     {
         return $this->hasMany(BasisPengetahuan::class);
     }

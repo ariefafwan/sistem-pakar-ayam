@@ -171,7 +171,7 @@ class AdminController extends Controller
     public function createbasis()
     {
         $user = Auth::user()->id;
-        $penyakits = Penyakit::all();
+        $penyakits = Penyakit::doesntHave('basispengetahuan')->get();
         $gejalas = Gejala::all();
         $page = "Tambah Basis Pengetahuan";
         return view('admin.basispengetahuan.create', compact('user', 'page', 'penyakits', 'gejalas'));
@@ -221,8 +221,7 @@ class AdminController extends Controller
     {
         $page = "Tambah Diagnosa";
         $gejala = Gejala::all();
-        $cekgejala = session("cek");
-        return view('admin.diagnosa.create', compact('page', 'gejala', 'cekgejala'));
+        return view('admin.diagnosa.create', compact('page', 'gejala'));
     }
 
     public function adddiagnosa(Request $request)
