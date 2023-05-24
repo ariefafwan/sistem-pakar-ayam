@@ -21,15 +21,6 @@
         <!-- Navigation-->
         <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
         @include('partials.side')
-        <!-- Header-->
-        <header class="masthead d-flex align-items-center">
-            <div class="container px-4 px-lg-5 text-center">
-                <h1 class="text-white mb-1">Selamat Datang</h1>
-                <h3 class="text-warning mb-5"><em>Sistem Pakar Diagnosa Penyakit Ayam Dengan Metode Forward Channing</em></h3>
-                <a class="btn btn-dark btn-xl" href="#about">Lainnya</a>
-            </div>
-        </header>
-
         @yield('welcome')
         @include('partials.footer')
         <!-- Scroll to Top Button-->
