@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gejala;
-use App\Models\Hasil;
 use App\Models\Penyakit;
 use App\Models\Rule;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -34,7 +32,7 @@ class UserController extends Controller
 
         foreach ($rule as $r) {
             $penyakit = Penyakit::findOrFail($r->penyakit_id);
-            $hasil[] = [
+            $hasil = [
                 "penyakit_id" => $penyakit->id,
                 "kd_penyakit" => $penyakit->kd_penyakit,
                 "nama_penyakit" => $penyakit->nama_penyakit,
