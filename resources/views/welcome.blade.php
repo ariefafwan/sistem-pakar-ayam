@@ -5,16 +5,15 @@
         <section class="content-section bg-light" id="about">
             <div class="container px-4 px-lg-5 text-center">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <h2>Daftar Penyakit Yang Diketahui</h2>
+                    <h2 class="mb-3">Daftar Penyakit Yang Diketahui</h2>
                     <div class="col-xs-16 mb-5">
                         <div class="box">
                             <div class="box-body">
                                 <table id="category-table" class="table table-light table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">#</th>
-                                            <th class="text-center">Kode Penyakit</th>
-                                            <th class="text-center">Name</th>
+                                            <th style="width: 5%" class="text-center">#</th>
+                                            <th style="width: 30%" class="text-center">Name</th>
                                             <th class="text-center">Detail</th>
                                         </tr>
                                     </thead>
@@ -22,7 +21,6 @@
                                         @foreach($penyakit as $index => $row)
                                         <tr>
                                             <th scope="row">{{ $index + 1 }}</th>
-                                            <td>{{ $row->kd_penyakit }}</td>
                                             <td>{{ $row->nama_penyakit }}</td>
                                             <td>{{ $row->det_penyakit }}</td>
                                         </tr>
@@ -33,19 +31,37 @@
                         </div>
                     </div>
                     <div class="col-xs-12">
-                        <h2>Diagnosa</h2>
+                        <h2 class="mb-3">Cek Diagnosa</h2>
                         <div class="box">
                             <div class="box-body">
-                                <form method="POST" action="{{ route('diagnosa.user') }}" enctype="form-data/multipart">
-                                    @csrf
-                                    @foreach ($gejala as $row)  
-                                    <input type="checkbox" value="{{ $row->id }}" name="cek[]">{{ $row->nama_gejala }}<br>
-                                    @endforeach
-                                    <button type="submit" class="btn btn-medium btn-primary">
-                                        <i class="fa fa-search-plus" aria-hidden="true"></i>
-                                        Diagnosa
-                                    </button>
-                                </form>
+                            <form id="gejala" method="POST" action="{{ route('diagnosa.user') }}" enctype="form-data/multipart">
+                                @csrf
+                                <table id="category-table" class="table table-light table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Gejala</th>
+                                            <th style="width: 30%" class="text-center">Ya/Tidak</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($gejala as $g)
+                                        <tr>
+                                            <td>{{ $g->nama_gejala }}</td>
+                                            <td>
+                                                <select class="form-select" name="cek[]" id="diagnosa">
+                                                    <option>Tidak</option>
+                                                    <option value="{{ $g->id }}">Ya</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <button type="submit" class="btn btn-medium btn-primary">
+                                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                                    Diagnosa
+                                </button>
+                            </form>
                             </div>
                         </div>
                     </div>
