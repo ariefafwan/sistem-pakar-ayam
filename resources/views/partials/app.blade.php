@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Stylish Portfolio - Start Bootstrap Template</title>
+        <title>Selamat Datang | Sistem Pakar Forward Channing</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -24,13 +24,14 @@
         <!-- Header-->
         <header class="masthead d-flex align-items-center">
             <div class="container px-4 px-lg-5 text-center">
-                <h1 class="text-white mb-1">Sistem Pakar Penyakit Ayam</h1>
+                <h1 class="text-white mb-1">Selamat Datang</h1>
                 <h3 class="text-warning mb-5"><em>Sistem Pakar Diagnosa Penyakit Ayam Dengan Metode Forward Channing</em></h3>
-                <a class="btn btn-dark btn-xl" href="#about">Diagnosa</a>
+                <a class="btn btn-dark btn-xl" href="#about">Lainnya</a>
             </div>
         </header>
 
         @yield('welcome')
+        @include('partials.footer')
         <!-- Scroll to Top Button-->
         <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
         <!-- Bootstrap core JS-->
