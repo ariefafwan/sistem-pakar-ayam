@@ -17,8 +17,13 @@
         <table class="table table-bordered table-hover">
           @foreach ($hasil as $row)
           <tr>
-            <td>Penyakit</td>
-            <td>:</td>
+            <td colspan="3" align="center">
+              <img src="{{ asset('storage/penyakit/'.$row['gambar']) }}" alt="{{ $row['nama_penyakit'] }}" class="img-fluid">
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 20%">Nama Penyakit</td>
+            <td style="width: 2%">:</td>
             <td>{{ $row['nama_penyakit'] }}</td>
           </tr>
           <tr>
@@ -33,7 +38,9 @@
           </tr>
           @endforeach
         </table>
-        <a class="btn btn-sm btn-danger mt-3" href="{{ route('welcome') }}">Kembali</a>
+        <a class="btn btn-danger" href="{{ route('welcome') }}">
+          <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbspBack
+        </a>
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 @extends('admin.app')
 
 @section('body')
-<div class="form-create-penyakit col-lg-7 shadow-lg rounded p-3">
+<div class="form-create-penyakit col-lg-12 shadow-lg rounded p-3">
     <a href="{{ route('penyakit.index') }}" class="btn btn-danger my-3">
         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbspBack
     </a>

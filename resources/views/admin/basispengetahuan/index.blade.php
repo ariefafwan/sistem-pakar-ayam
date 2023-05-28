@@ -25,7 +25,7 @@
                         <tbody>
                             @foreach($penyakit as $index => $row)
                             <tr>
-                                <th scope="row">{{ $index + 1 }}</th>
+                                <td align="center" scope="row">{{ $index + 1 }}</td>
                                 <td>{{ $row->penyakit->nama_penyakit }}</td>
                                 <td>
                                     @foreach ($basis as $item)

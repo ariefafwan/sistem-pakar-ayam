@@ -46,8 +46,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/basispengetahuan', [AdminController::class, 'basispengetahuan'])->name('basis.index');
     Route::get('/createbasispengetahuan', [AdminController::class, 'createbasis'])->name('basis.create');
     Route::post('/createbasispengetahuan', [AdminController::class, 'storebasis'])->name('basis.store');
-    // Route::get('/editbasispengetahuan/{id}', [AdminController::class, 'editbasis'])->name('basis.edit');
-    // Route::post('/editbasispengetahuan/{id}/update', [AdminController::class, 'updatebasis'])->name('basis.update');
     Route::post('/destroybasispengetahuan/{id}/destroy', [AdminController::class, 'destroybasis'])->name('basis.destroy');
     //diagnosa
     Route::get('/diagnosa', [AdminController::class, 'diagnosa'])->name('diagnosa.index');

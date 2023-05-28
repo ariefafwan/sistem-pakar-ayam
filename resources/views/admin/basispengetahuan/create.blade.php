@@ -2,7 +2,7 @@
 
 @section('body')
 
-<div class="form-create-basis col-lg-8 shadow-lg rounded p-3">
+<div class="form-create-basis col-lg-12 shadow-lg rounded p-3">
     <a href="{{ route('basis.index') }}" class="btn btn-danger my-3">
         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbspBack
     </a>

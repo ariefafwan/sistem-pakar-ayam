@@ -5,8 +5,9 @@
 <hr>
 <section class="content">
     <div class="btn-group mb-3">
-        <a href="{{ route('penyakit.create') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>
-            CREATE NEW</a>
+        <a href="{{ route('penyakit.create') }}" class="btn btn-primary">
+            <i class="fa fa-plus" aria-hidden="true"></i>&nbspCREATE NEW
+        </a>
     </div>
 
     <div class="row">
@@ -26,16 +27,16 @@
                         <tbody>
                             @foreach($penyakit as $index => $row)
                             <tr>
-                                <th scope="row">{{ $index + 1 }}</th>
+                                <td align="center" scope="row">{{ $index + 1 }}</td>
                                 <td>{{ $row->kd_penyakit }}</td>
                                 <td>{{ $row->nama_penyakit }}</td>
                                 <td>{{ $row->det_penyakit }}</td>
                                 <td align="center" class="d-flex justify-content-evenly">
-                                    <a href="{{ route('penyakit.show',$row->id) }}" class="btn btn-info"><i
-                                            class="fa fa-eye" aria-hidden="true"></i>
+                                    <a href="{{ route('penyakit.show',$row->id) }}" class="btn btn-info">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
                                     </a>
-                                    <a href="{{ route('penyakit.edit',$row->id) }}" class="btn btn-warning"><i
-                                            class="fa fa-pencil" aria-hidden="true"></i>
+                                    <a href="{{ route('penyakit.edit',$row->id) }}" class="btn btn-warning">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </a>
                                     <a href="javascript:void(0)" class="btn btn-danger"
                                         onclick="event.preventDefault();

@@ -1,7 +1,7 @@
 @extends('admin.app')
 
 @section('body')
-<div class="form-create-gejala col-lg-7 shadow-lg p-3 rounded">
+<div class="form-create-gejala col-lg-12 shadow-lg p-3 rounded">
     <a href="{{ route('gejala.index') }}" class="btn btn-danger my-3">
         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbspBack
     </a>
