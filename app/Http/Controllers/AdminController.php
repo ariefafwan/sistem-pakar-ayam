@@ -219,7 +219,7 @@ class AdminController extends Controller
 
     public function creatediagnosa()
     {
-        $page = "Tambah Diagnosa";
+        $page = "Cek Diagnosa";
         $gejala = Gejala::all();
         return view('admin.diagnosa.create', compact('page', 'gejala'));
     }

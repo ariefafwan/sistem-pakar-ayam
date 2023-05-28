@@ -8,13 +8,18 @@
     <div class="col-lg-12">
       <table class="table table-bordered table-hover">
         <tr>
-          <td>Penyakit</td>
+            <td colspan="3" align="center">
+              <img src="{{ asset('storage/penyakit/'.$penyakit->gambar) }}" alt="{{ $penyakit->nama_penyakit }}" class="img-fluid">
+            </td>
+        </tr>
+        <tr>
+          <td style="width: 20%">Nama Penyakit</td>
           <td>:</td>
           <td>{{ $penyakit->nama_penyakit }}</td>
         </tr>
         <tr>
           <td>Penyebab</td>
-          <td>:</td>
+          <td style="width: 2%">:</td>
           <td>{{ $penyakit->det_penyakit }}</td>
         </tr>
         <tr>

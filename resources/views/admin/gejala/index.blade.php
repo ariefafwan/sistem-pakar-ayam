@@ -25,7 +25,7 @@
                         <tbody>
                             @foreach($gejala as $index => $row)
                             <tr>
-                                <th scope="row">{{ $index + 1 }}</th>
+                                <td align="center" scope="row">{{ $index + 1 }}</td>
                                 <td>{{ $row->kd_gejala }}</td>
                                 <td>{{ $row->nama_gejala }}</td>
                                 <td align="center" class="d-flex justify-content-evenly">

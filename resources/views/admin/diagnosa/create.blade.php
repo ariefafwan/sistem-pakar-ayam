@@ -1,7 +1,7 @@
 @extends('admin.app')
 
 @section('body')
-<div class="form-check-diagnosa col-lg-8 shadow-lg rounded p-3">
+<div class="form-check-diagnosa col-lg-12 shadow-lg rounded p-3">
   <form class="col-lg-12" action="{{ route('diagnosa.store') }}" method="post">
     @csrf
     <table class="table table-bordered table-hover">
@@ -32,7 +32,7 @@
     </table>
     <div class="button d-flex justify-content-center">
       <button type="submit" class="btn btn-success">
-        <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbspSubmit
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbspCek Diagnosa
       </button>
     </div>
   </form>
