@@ -19,6 +19,7 @@ class UserController extends Controller
     public function diagnosauser(Request $request)
     {
         $cek = implode('AND', $request->cek);
+        // dd($cek);
         $rule = Rule::where('rule', 'like', "%" . $cek . "%")->get();
 
         if ($rule->isEmpty()) {
@@ -49,7 +50,12 @@ class UserController extends Controller
     public function hasiluser()
     {
         $hasil = session("hasil");
-        // return view('hasil')->with('hasil', $hasil);
-        dd($hasil);
+        $dataHasil = [];
+        if (!empty($hasil)) {
+            $dataHasil[] = $hasil; // Tambahkan hasil ke array dataHasil
+        }
+
+        return view('hasil')->with('hasil', $dataHasil);
+        // dd($hasil);
     }
 }

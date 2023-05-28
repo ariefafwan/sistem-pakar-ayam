@@ -1,28 +1,59 @@
 @extends('admin.app')
 
 @section('body')
-<form class="col-lg-6" action="{{ route('basis.store') }}" method="post">
-    @csrf
-    <div class="form-group mb-3">
-        <label for="penyakit" class="form-label">Penyakit</label>
-        <select class="form-control" name="penyakit_id" id="penyakit" required>
-            <option>--Pilih Penyakit--</option>
-            @foreach ($penyakits as $p)
-            <option value="{{ $p->id }}">{{ $p->nama_penyakit }}</option>
-            @endforeach
-        </select>
-    </div>
-    <div class="form-group mb-3">
-        <label for="" class="form-label">Gejala</label>
-        <div class="col-12 d-flex flex-row">
-            @foreach ($gejalas as $row)
-            <div class="col-3">
-                <label for="gejala[{{ $row->id }}]" class="form-label">{{ $row->nama_gejala }}</label>
-                <input type="checkbox" name="gejala_id[]" id="gejala[{{ $row->id }}]" value="{{ $row->id }}">
-            </div>
-            @endforeach
+
+<div class="form-create-basis col-lg-8 shadow-lg rounded p-3">
+    <a href="{{ route('basis.index') }}" class="btn btn-danger my-3">
+        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbspBack
+    </a>
+    <form class="col-lg-12" action="{{ route('basis.store') }}" method="post">
+        @csrf
+        <table class="table table-bordered table-hover">
+            <thead style="background-color: darkcyan">
+                <tr>
+                    <th colspan="2" class="text-white text-center">Penyakit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td colspan="2">
+                    <select class="form-control" name="penyakit_id" id="penyakit" required>
+                        <option>--Pilih Penyakit--</option>
+                        @foreach ($penyakits as $p)
+                        <option value="{{ $p->id }}">{{ $p->nama_penyakit }}</option>
+                        @endforeach
+                    </select>
+                </td>
+            </tbody>
+            <thead style="background-color: darkcyan">
+                <tr>
+                    <th class="text-white text-center">Gejala</th>
+                    <th style="width: 30%" class="text-white text-center">Check</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($gejalas as $g)
+                <tr>
+                    <td>
+                        <label class="form-check-label" for="gejala[{{ $g->id }}]">
+                            {{ $g->nama_gejala }}
+                        </label>
+                    </td>
+                    <td>
+                        <div class="form-check d-flex justify-content-center">
+                            <input class="form-check-input" type="checkbox" value="{{ $g->id }}" name="gejala_id[]"
+                                id="gejala[{{ $g->id }}]">
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+
+            </tbody>
+        </table>
+        <div class="button d-flex justify-content-center">
+            <button type="submit" class="btn btn-success">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbspSubmit
+            </button>
         </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    </form>
+</div>
 @endsection
