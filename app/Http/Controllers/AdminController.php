@@ -139,6 +139,7 @@ class AdminController extends Controller
             // menyimpan gambar baru
             $filename = $file->getClientOriginalName();
             $file->storeAs('public/penyakit/', $filename);
+            // $img->move(public_path() . '/storage/project/img/', $fileimg);
             $dtUpload->gambar = $filename;
         }
         // $dtUpload->gambar = $request->gambar;
