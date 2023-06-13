@@ -25,6 +25,10 @@
                     <i class="fa fa-search-plus" aria-hidden="true"></i>
                     <span class="ml-2">Diagnosa</span>
                 </a>
+                <a class="nav-link" href="{{ route('diagnosa.index') }}">
+                    <i class="fa fa-table" aria-hidden="true"></i>
+                    <span class="ml-2">Hasil Diagnosa Public</span>
+                </a>
             </div>
         </div>
     </nav>

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('hasils', function (Blueprint $table) {
             $table->id();
-            $table->string('tanggal');
+            $table->unsignedBigInteger('penyakit_id');
+            $table->foreign('penyakit_id')->references('id')->on('penyakits')->onDelete('cascade');
             $table->timestamps();
         });
     }
