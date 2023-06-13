@@ -15,8 +15,13 @@ class Penyakit extends Model
         return $this->hasMany(BasisPengetahuan::class);
     }
 
-    public function ambilgambar()
+    public function rule()
     {
-        return "/storage/img/penyakit" . $this->img;
+        return $this->hasMany(Rule::class);
+    }
+
+    public function penyakit()
+    {
+        return $this->hasMany(Hasil::class);
     }
 }

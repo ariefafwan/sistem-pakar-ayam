@@ -23,6 +23,9 @@
                           </div>
                         </div>
                       </div>
+                      <a class="btn btn-danger mt-3" href="{{ route('welcome') }}">
+                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbspBack
+                      </a>
                 </div>
             </div>
         </section>

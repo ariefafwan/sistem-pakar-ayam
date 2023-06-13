@@ -15,7 +15,7 @@
       <h2>Hasil Diagnosa</h2>
       <div class="col-lg-12">
         <table class="table table-bordered table-hover">
-          @foreach ($hasil as $row)
+          @foreach ($hasil as $alt => $row)
           <tr>
             <td colspan="3" align="center">
               <img src="{{ asset('storage/penyakit/'.$row['gambar']) }}" alt="{{ $row['nama_penyakit'] }}" class="img-fluid">

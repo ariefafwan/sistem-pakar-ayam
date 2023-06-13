@@ -218,6 +218,15 @@ class AdminController extends Controller
         return view('admin.diagnosa.index', compact('page', 'hasil'));
     }
 
+    public function destroyhasil($id)
+    {
+        $hasil = Hasil::findOrFail($id);
+        $hasil->delete();
+
+        Alert::success('Informasi Pesan!', 'Hasil Diagnosa Berhasil Di Hapus');
+        return redirect()->route('diagnosa.index');
+    }
+
     public function creatediagnosa()
     {
         $page = "Cek Diagnosa";

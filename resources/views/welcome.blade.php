@@ -6,11 +6,12 @@
     <div class="container px-4 px-lg-5 text-center">
         <h1 class="text-white mb-1">Selamat Datang</h1>
         <h3 class="text-info mb-5"><em>Sistem Pakar Diagnosa Penyakit Ayam Dengan Metode Forward Channing</em></h3>
-        <a class="btn btn-info btn-lg" href="#about">Lainnya</a>
+        <a class="btn btn-info btn-lg" href="#diagnosa">Mulai Diagnosa</a>
+        <a class="btn btn-secondary btn-lg" href="{{ route('riwayat') }}">Riwayat Diagnosa</a>
     </div>
 </header>
 <!-- About-->
-<section class="content-section bg-light" id="about">
+<section class="content-section bg-light" id="diagnosa">
     <div class="container px-4 px-lg-5 text-center">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <h2 class="mb-3">Daftar Penyakit Yang Diketahui</h2>

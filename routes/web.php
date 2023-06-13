@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [UserController::class, 'welcome'])->name('welcome');
+Route::get('/riwayat-diagnosa', [UserController::class, 'riwayat'])->name('riwayat');
 Route::post('/hasildiagnosa', [UserController::class, 'diagnosauser'])->name('diagnosa.user');
 Route::get('/hasildiagnosa', [UserController::class, 'hasiluser'])->name('hasil.user');
 
@@ -63,6 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/destroybasispengetahuan/{id}/destroy', [AdminController::class, 'destroybasis'])->name('basis.destroy');
     //diagnosa
     Route::get('/diagnosa', [AdminController::class, 'diagnosa'])->name('diagnosa.index');
+    Route::post('/destroyhasil/{id}', [AdminController::class, 'destroyhasil'])->name('destroyhasil');
     Route::get('/creatediagnosa', [AdminController::class, 'creatediagnosa'])->name('diagnosa.create');
     Route::post('/creatediagnosa', [AdminController::class, 'adddiagnosa'])->name('diagnosa.store');
     //test
