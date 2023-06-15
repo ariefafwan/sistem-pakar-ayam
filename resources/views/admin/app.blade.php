@@ -44,7 +44,7 @@
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Sistem Pakar FC 2023</div>
+                        <div class="text-muted">Copyright &copy; Sistem Pakar Dinas Peternakan Dan Kesehatan Hewan 2023</div>
                     </div>
                 </div>
             </footer>
