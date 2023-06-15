@@ -93,7 +93,7 @@ class AdminController extends Controller
         $dtUpload->solusi_penyakit = $request->solusi_penyakit;
         $file = $request->file('gambar');
         if ($request->validate([
-            'gambar' => 'required|mimes:png,jpg,jpeg|max:2048'
+            'gambar' => 'required|mimes:png,jpg,jpeg|max:10000'
         ])) {
             $filename = $file->getClientOriginalName();
             $file->storeAs('public/penyakit/', $filename);
@@ -130,7 +130,7 @@ class AdminController extends Controller
         $dtUpload->solusi_penyakit = $request->solusi_penyakit;
         $file = $request->file('gambar');
         if ($request->validate([
-            'gambar' => 'required|mimes:png,jpg,jpeg|max:2048'
+            'gambar' => 'required|mimes:png,jpg,jpeg|max:10000'
         ])) {
             // menghapus gambar lama
             if ($request->oldImage) {

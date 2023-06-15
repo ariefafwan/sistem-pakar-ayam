@@ -18,7 +18,7 @@
           @foreach ($hasil as $alt => $row)
           <tr>
             <td colspan="3" align="center">
-              <img src="{{ asset('storage/penyakit/'.$row['gambar']) }}" alt="{{ $row['nama_penyakit'] }}" class="img-fluid">
+              <img src="{{ asset('storage/penyakit/'.$row['gambar']) }}" style="widht: 600px; height: 300px" alt="{{ $row['nama_penyakit'] }}" class="img-fluid">
             </td>
           </tr>
           <tr>

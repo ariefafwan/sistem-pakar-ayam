@@ -9,6 +9,11 @@
           <table class="table table-bordered table-hover">
             @foreach ($rule as $hasil)
               <tr>
+                <td colspan="3" align="center">
+                  <img src="{{ asset('storage/penyakit/'.$hasil->penyakit->gambar) }}" alt="{{ $hasil->nama_penyakit }}" style="widht: 600px; height: 300px" class="img-fluid">
+                </td>
+              </tr>
+              <tr>
               <td>Penyakit</td>
               <td>:</td>
               <td>{{ $hasil->penyakit->nama_penyakit }}</td>

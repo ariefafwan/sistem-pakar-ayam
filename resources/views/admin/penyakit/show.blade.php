@@ -9,7 +9,7 @@
       <table class="table table-bordered table-hover">
         <tr>
             <td colspan="3" align="center">
-              <img src="{{ asset('storage/penyakit/'.$penyakit->gambar) }}" alt="{{ $penyakit->nama_penyakit }}" class="img-fluid">
+              <img src="{{ asset('storage/penyakit/'.$penyakit->gambar) }}" alt="{{ $penyakit->nama_penyakit }}" style="widht: 600px; height: 300px" class="img-fluid">
             </td>
         </tr>
         <tr>
