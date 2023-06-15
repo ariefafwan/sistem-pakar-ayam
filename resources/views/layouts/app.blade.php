@@ -26,11 +26,6 @@
       crossorigin="anonymous"
     />
     <style>
-        .card-img-left {
-            width: 45%;
-            background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
-            background-size: cover;
-        }
         .text-gradient {
             background: -webkit-linear-gradient(315deg, #00010a 0%, #8f9194 100%);
             -webkit-background-clip: text;

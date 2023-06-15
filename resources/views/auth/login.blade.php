@@ -3,12 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row">
-      <div class="col-lg-10 col-xl-9 mx-auto">
+      <div class="col-md-8 col-xl-5 mx-auto">
         <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
           <div class="card-img-left d-none d-md-flex">
             <!-- Background image for card set in CSS! -->
             </div>
-                <div class="card-body p-4 p-sm-5">
+                <div class="card-body p-5 p-sm-5">
                 <h1 class="card-title text-center mb-3 fw-bolder text-gradient">LOGIN</h1>
                     <form method="POST" action="{{ route('login') }}">
                     @csrf
