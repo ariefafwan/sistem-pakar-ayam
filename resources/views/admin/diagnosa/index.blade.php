@@ -5,6 +5,12 @@
 <hr>
 <section class="content">
     <div class="row">
+        <div class="col-md-12 mb-3">
+            <a href="{{ route('hasil.export') }}" class="btn btn-success" target="_blank">
+                <i class="fa fa-download" aria-hidden="true"></i>&nbspDownload/Export</a>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-body table-responsive">
@@ -23,8 +29,8 @@
                             <tr>
                                 <th scope="row">{{ $index + 1 }}</th>
                                 <td>{{ $row->penyakit->nama_penyakit }}</td>
-                                <th>{{ $row->created_at->format('d-m-Y') }}</th>
-                                <th class="d-flex justify-content-center">
+                                <td>{{ $row->created_at->format('d-m-Y') }}</td>
+                                <td class="d-flex justify-content-center">
                                     <a href="javascript:void(0)" class="btn btn-danger" onclick="event.preventDefault();
                                                 document.getElementById('destroyhasil-delete-form-{{$row->id}}').submit();">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
@@ -34,7 +40,7 @@
                                         style="display: none;">
                                         @csrf
                                     </form>
-                                </th>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

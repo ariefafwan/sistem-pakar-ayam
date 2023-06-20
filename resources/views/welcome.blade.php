@@ -81,10 +81,12 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <button type="submit" class="btn btn-medium btn-primary">
-                                <i class="fa fa-search-plus" aria-hidden="true"></i>
-                                Diagnosa
-                            </button>
+                            <div class="d-flex justify-content-start">
+                                <button type="submit" class="btn btn-medium btn-primary">
+                                    <i class="fa fa-search-plus" aria-hidden="true"></i>
+                                    Diagnosa
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>

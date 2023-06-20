@@ -31,7 +31,9 @@ class HomeController extends Controller
         $page = "Dasboard Admin";
         $dt1 = Gejala::get()->count();
         $dt2 = Penyakit::get()->count();
-        $dt3 = BasisPengetahuan::get()->count();
+        $dt3 = BasisPengetahuan::SelectRaw('count(*) as total')
+            ->groupBy('penyakit_id')
+            ->get();
         return view('admin.dashboard', compact('user', 'page', 'dt1', 'dt2', 'dt3'));
     }
 

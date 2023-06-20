@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\GejalaExport;
+use App\Exports\HasilExport;
+use App\Exports\PenyakitExport;
 use App\Models\Gejala;
 use App\Models\Penyakit;
 use Illuminate\Http\Request;
@@ -10,6 +13,7 @@ use App\Models\Hasil;
 use App\Models\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
@@ -240,6 +244,21 @@ class AdminController extends Controller
         $page = "Hasil Diagnosa";
         $rule = Rule::where('rule', 'like', "%" . $cek . "%")->get();
         return view('admin.diagnosa.hasil', compact('rule', 'page'));
+    }
+
+    public function exporthasil()
+    {
+        return Excel::download(new HasilExport, 'daftardiagnosa.xlsx');
+    }
+
+    public function exportgejala()
+    {
+        return Excel::download(new GejalaExport, 'daftargejala.xlsx');
+    }
+
+    public function exportpenyakit()
+    {
+        return Excel::download(new PenyakitExport, 'daftarpenyakit.xlsx');
     }
 
     // public function test(Request $request)
