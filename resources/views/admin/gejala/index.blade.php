@@ -4,9 +4,11 @@
 
 <hr>
 <section class="content">
-    <div class="btn-group mb-3">
-        <a href="{{ route('gejala.create') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>
-            CREATE NEW</a>
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <a href="{{ route('gejala.create') }}" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i>&nbspCreate New</a>
+            <a href="{{ route('gejala.export') }}" class="btn btn-success" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>&nbspDownload/Export</a>
+        </div>
     </div>
 
     <div class="row">

@@ -67,6 +67,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/destroyhasil/{id}', [AdminController::class, 'destroyhasil'])->name('destroyhasil');
     Route::get('/creatediagnosa', [AdminController::class, 'creatediagnosa'])->name('diagnosa.create');
     Route::post('/creatediagnosa', [AdminController::class, 'adddiagnosa'])->name('diagnosa.store');
+    //export
+    Route::get('/export/gejala', [AdminController::class, 'exportgejala'])->name('gejala.export');
+    Route::get('/export/penyakit', [AdminController::class, 'exportpenyakit'])->name('penyakit.export');
+    Route::get('/export/hasil', [AdminController::class, 'exporthasil'])->name('hasil.export');
     //test
     // Route::get('/test', [AdminController::class, 'test'])->name('test');
 });
