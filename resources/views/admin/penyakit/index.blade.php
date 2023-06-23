@@ -30,7 +30,7 @@
                         <tbody>
                             @foreach($penyakit as $index => $row)
                             <tr>
-                                <td align="center" scope="row">{{ $index + 1 }}</td>
+                                <th class="text-center">{{ $loop->iteration }}</th>
                                 <td>{{ $row->kd_penyakit }}</td>
                                 <td>{{ $row->nama_penyakit }}</td>
                                 <td>{{ $row->det_penyakit }}</td>
@@ -56,6 +56,17 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="col-md-12 text-center">
+                        <div class="text-center mb-3">
+                            Halaman: {{ $penyakit->currentPage() }}
+                            <br>
+                            Jumlah Data: {{ $penyakit->total() }}
+                            <br>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            {{ $penyakit->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

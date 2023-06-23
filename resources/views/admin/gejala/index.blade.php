@@ -27,7 +27,7 @@
                         <tbody>
                             @foreach($gejala as $index => $row)
                             <tr>
-                                <td align="center" scope="row">{{ $index + 1 }}</td>
+                                <th class="text-center">{{ $loop->iteration }}</th>
                                 <td>{{ $row->kd_gejala }}</td>
                                 <td>{{ $row->nama_gejala }}</td>
                                 <td align="center" class="d-flex justify-content-evenly">
@@ -48,6 +48,17 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="col-md-12 text-center">
+                        <div class="text-center mb-3">
+                            Halaman: {{ $gejala->currentPage() }}
+                            <br>
+                            Jumlah Data: {{ $gejala->total() }}
+                            <br>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            {{ $gejala->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
