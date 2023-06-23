@@ -18,6 +18,6 @@
                 </a>
             </li>
         </ul>
-        <p class="text-muted small">Copyright &copy; Sistem Pakar Dinas Peternakan Dan Kesehatan Hewan 2023</p>
+        <p class="text-white small">Copyright &copy; Sistem Pakar Dinas Peternakan Dan Kesehatan Hewan 2023</p>
     </div>
 </footer>
