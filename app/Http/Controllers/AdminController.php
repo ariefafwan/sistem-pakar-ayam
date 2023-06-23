@@ -77,7 +77,7 @@ class AdminController extends Controller
     {
         $user = Auth::user()->id;
         $page = "Daftar Penyakit";
-        $penyakit = Penyakit::latest()->paginate(10);
+        $penyakit = Penyakit::latest()->paginate(5);
         return view('admin.penyakit.index', compact('user', 'page', 'penyakit'));
     }
 
@@ -217,7 +217,7 @@ class AdminController extends Controller
 
     public function diagnosa()
     {
-        $hasil = Hasil::latest()->paginate(10);
+        $hasil = Hasil::latest()->paginate(5);
         $page = 'Hasil Diagnosa';
         return view('admin.diagnosa.index', compact('page', 'hasil'));
     }

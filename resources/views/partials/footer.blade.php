@@ -1,5 +1,5 @@
 <!-- Footer-->
-<footer class="footer text-center">
+<footer class="flex-shrink-0 py-4 bg-dark text-white-50 text-center">
     <div class="container px-4 px-lg-5">
         <ul class="list-inline mb-2">
             <li class="list-inline-item">

@@ -13,6 +13,9 @@
   <div class="container px-4 px-lg-5 text-center">
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <h2>Hasil Diagnosa</h2>
+      <div class="col-md-8 justify-content-center">
+        <a href="{{ route('cetak.pdf') }}" class="btn btn-primary" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>&nbspCetak PDF</a>
+      </div>
       <div class="col-lg-12">
         <table class="table table-bordered table-hover">
           @foreach ($hasil as $alt => $row)

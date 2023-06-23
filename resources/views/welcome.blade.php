@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12">
+            <div class="col-md-8">
                 <h2 class="mb-3">Cek Diagnosa</h2>
                 <div class="box">
                     <div class="box-body">
@@ -49,14 +49,14 @@
                             <table id="category-table" class="table table-bordered table-hover">
                                 <thead style="background-color:darkcyan">
                                     <tr>
-                                        <th class="text-white text-center">Gejala</th>
+                                        <th class="text-white text-left">Gejala</th>
                                         <th style="width: 30%" class="text-white text-center">Ya/Tidak</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($gejala as $g)
                                     <tr>
-                                        <td>
+                                        <td align="left">
                                             <label class="form-check-label" for="gejala[{{ $g->id }}]">
                                                 {{ $g->nama_gejala }}
                                             </label>
@@ -67,21 +67,11 @@
                                                     name="cek[]" id="gejala[{{ $g->id }}]">
                                             </div>
                                         </td>
-
-
-
-                                        {{-- <td>{{ $g->nama_gejala }}</td>
-                                        <td>
-                                            <select class="form-select text-center" name="cek[]" id="diagnosa">
-                                                <option>Tidak</option>
-                                                <option value="{{ $g->id }}">Ya</option>
-                                            </select>
-                                        </td> --}}
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="d-flex justify-content-start">
+                            <div class="d-flex justify-content-center">
                                 <button type="submit" class="btn btn-medium btn-primary">
                                     <i class="fa fa-search-plus" aria-hidden="true"></i>
                                     Diagnosa

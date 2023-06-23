@@ -27,7 +27,7 @@
                         <tbody>
                             @foreach($hasil as $index => $row)
                             <tr>
-                                <th scope="row">{{ $index + 1 }}</th>
+                                <th class="text-center">{{ $loop->iteration }}</th>
                                 <td>{{ $row->penyakit->nama_penyakit }}</td>
                                 <td>{{ $row->created_at->format('d-m-Y') }}</td>
                                 <td class="d-flex justify-content-center">
@@ -45,6 +45,17 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="col-md-12 text-center">
+                        <div class="text-center mb-3">
+                            Halaman: {{ $hasil->currentPage() }}
+                            <br>
+                            Jumlah Data: {{ $hasil->total() }}
+                            <br>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            {{ $hasil->links() }}
+                        </div>
+                    </div>
                     @else
                     <div class="card">
                         <div class="card-header">

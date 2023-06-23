@@ -28,6 +28,9 @@ Route::get('/riwayat-diagnosa', [UserController::class, 'riwayat'])->name('riway
 Route::post('/hasildiagnosa', [UserController::class, 'diagnosauser'])->name('diagnosa.user');
 Route::get('/hasildiagnosa', [UserController::class, 'hasiluser'])->name('hasil.user');
 
+//pdf
+Route::get('/cetakhasildiagnosa', [UserController::class, 'cetakpdf'])->name('cetak.pdf');
+
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 

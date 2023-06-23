@@ -7,6 +7,7 @@ use App\Models\Hasil;
 use App\Models\Penyakit;
 use App\Models\Rule;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserController extends Controller
 {
@@ -60,6 +61,13 @@ class UserController extends Controller
         $page = "Hasil Diagnosa";
         return view('hasil', compact('page'))->with('hasil', $hasil);
         // dd($hasil);
+    }
+
+    public function cetakpdf()
+    {
+        $hasil = session("hasil");
+        $pdf = PDF::loadview('diagnosapdf', ['hasil' => $hasil]);
+        return $pdf->download('laporan-diagnosa.pdf');
     }
 
     public function riwayat()
