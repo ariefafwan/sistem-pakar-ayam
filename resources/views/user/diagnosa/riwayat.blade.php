@@ -1,15 +1,9 @@
-@extends('admin.app')
+@extends('user.app')
 
 @section('body')
 
 <hr>
 <section class="content">
-    <div class="row">
-        <div class="col-md-12 mb-3">
-            <a href="{{ route('hasil.export') }}" class="btn btn-success" target="_blank">
-                <i class="fa fa-download" aria-hidden="true"></i>&nbspDownload/Export</a>
-        </div>
-    </div>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -21,7 +15,6 @@
                                 <th style="width: 5%" class="text-white text-center">#</th>
                                 <th style="width: 30%" class="text-white text-center">Hasil Diagnosa</th>
                                 <th class="text-white text-center">Tanggal Diagnosa</th>
-                                <th class="text-white text-center">Di Diagnosa Oleh</th>
                                 <th class="text-white text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -31,7 +24,6 @@
                                 <th class="text-center">{{ $loop->iteration }}</th>
                                 <td>{{ $row->penyakit->nama_penyakit }}</td>
                                 <td>{{ $row->created_at->format('d-m-Y') }}</td>
-                                <td>{{ $row->user->name }}</td>
                                 <td class="d-flex justify-content-center">
                                     <a href="javascript:void(0)" class="btn btn-danger" onclick="event.preventDefault();
                                                 document.getElementById('destroyhasil-delete-form-{{$row->id}}').submit();">

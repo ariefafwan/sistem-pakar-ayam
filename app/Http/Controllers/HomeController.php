@@ -27,16 +27,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $page = "Dasboard Admin";
-        $dt1 = Gejala::get()->count();
-        $dt2 = Penyakit::get()->count();
-        $dt3 = BasisPengetahuan::SelectRaw('count(*) as total')
-            ->groupBy('penyakit_id')
-            ->get();
-        return view('admin.dashboard', compact('user', 'page', 'dt1', 'dt2', 'dt3'));
+        if (Auth::user()->id == 1) {
+            $user = Auth::user();
+            $page = "Dasboard Admin";
+            $dt1 = Gejala::get()->count();
+            $dt2 = Penyakit::get()->count();
+            $dt3 = BasisPengetahuan::SelectRaw('count(*) as total')
+                ->groupBy('penyakit_id')
+                ->get();
+            return view('admin.dashboard', compact('user', 'page', 'dt1', 'dt2', 'dt3'));
+        } else if (Auth::user()->id == 2) {
+            $user = Auth::user();
+            $page = "Dasboard User";
+            $dt1 = Gejala::get()->count();
+            $dt2 = Penyakit::get()->count();
+            $dt3 = BasisPengetahuan::SelectRaw('count(*) as total')
+                ->groupBy('penyakit_id')
+                ->get();
+            return view('user.dashboard', compact('user', 'page', 'dt1', 'dt2', 'dt3'));
+        }
     }
-
     public function logout()
     {
         Auth::logout();

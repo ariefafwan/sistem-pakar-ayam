@@ -9,11 +9,15 @@ class Hasil extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $with = ['penyakit'];
+    protected $with = ['penyakit', 'user'];
 
 
     public function penyakit()
     {
         return $this->belongsTo(Penyakit::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

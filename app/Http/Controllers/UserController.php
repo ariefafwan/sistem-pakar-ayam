@@ -8,10 +8,10 @@ use App\Models\Penyakit;
 use App\Models\Rule;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
     public function welcome()
     {
         $gejala = Gejala::all();
@@ -19,6 +19,13 @@ class UserController extends Controller
         $penyakit = Penyakit::latest()->paginate(10);
         return view('welcome', compact('gejala', 'penyakit', 'page'));
     }
+    public function index()
+    {
+        $page = "Mulai Diagnosa";
+        $gejala = Gejala::all();
+        return view('user.diagnosa.create', compact('page', 'gejala'));
+    }
+
     public function diagnosauser(Request $request)
     {
         $cek = implode('AND', $request->cek);
@@ -27,7 +34,7 @@ class UserController extends Controller
 
         if ($rule->isEmpty()) {
             $page = "Hasil Tidak Ditemukan";
-            return view('hasilgagal', compact('page'));
+            return view('user.diagnosa.hasilgagal', compact('page'));
         }
 
         $hasil = session("hasil");
@@ -38,6 +45,7 @@ class UserController extends Controller
         foreach ($rule as $r) {
             $penyakit = Penyakit::findOrFail($r->penyakit_id);
             $hasil[] = [
+                "user_id" => Auth::user()->id,
                 "penyakit_id" => $penyakit->id,
                 "kd_penyakit" => $penyakit->kd_penyakit,
                 "nama_penyakit" => $penyakit->nama_penyakit,
@@ -47,6 +55,7 @@ class UserController extends Controller
             ]; // Tambahkan hasil ke array hasil
 
             $dataupload = new Hasil();
+            $dataupload->user_id = Auth::user()->id;
             $dataupload->penyakit_id = $penyakit->id;
             $dataupload->save();
         }
@@ -59,21 +68,21 @@ class UserController extends Controller
     {
         $hasil = session("hasil");
         $page = "Hasil Diagnosa";
-        return view('hasil', compact('page'))->with('hasil', $hasil);
+        return view('user.diagnosa.hasil', compact('page'))->with('hasil', $hasil);
         // dd($hasil);
     }
 
     public function cetakpdf()
     {
         $hasil = session("hasil");
-        $pdf = PDF::loadview('diagnosapdf', ['hasil' => $hasil]);
+        $pdf = PDF::loadview('user.diagnosa.diagnosapdf', ['hasil' => $hasil]);
         return $pdf->download('laporan-diagnosa.pdf');
     }
 
     public function riwayat()
     {
-        $hasil = Hasil::latest()->get();
+        $hasil = Hasil::where('user_id', Auth::user()->id)->paginate(5);
         $page = "Riwayat Diagnosa";
-        return view('riwayat', compact('hasil', 'page'));
+        return view('user.diagnosa.riwayat', compact('hasil', 'page'));
     }
 }
