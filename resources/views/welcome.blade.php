@@ -6,8 +6,13 @@
     <div class="container px-4 px-lg-5 text-center">
         <h1 class="text-white mb-1">Selamat Datang</h1>
         <h3 class="text-info mb-5"><em>Sistem Pakar Diagnosa Penyakit Ayam Dengan Metode Forward Channing</em></h3>
-        <a class="btn btn-info btn-lg" href="#diagnosa">Mulai Diagnosa</a>
-        <a class="btn btn-secondary btn-lg" href="{{ route('riwayat') }}">Riwayat Diagnosa</a>
+        @if (Route::has('login'))
+            @auth
+                <a class="btn btn-info btn-lg" href="{{ route('diagnosauser.create') }}">Mulai Diagnosa</a>
+            @else
+                <a class="btn btn-info btn-lg" href="{{ route('login') }}">Mulai Diagnosa</a>
+            @endauth
+        @endif
     </div>
 </header>
 <!-- About-->
@@ -18,7 +23,7 @@
             <div class="col-xs-16 mb-5">
                 <div class="box">
                     <div class="box-body">
-                        <table id="category-table" class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover">
                             <thead style="background-color: black">
                                 <tr>
                                     <th style="width: 5%" class="text-white text-center">#</th>
@@ -39,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
+            {{-- <div class="col-md-8">
                 <h2 class="mb-3">Cek Diagnosa</h2>
                 <div class="box">
                     <div class="box-body">
@@ -80,7 +85,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
